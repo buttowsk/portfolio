@@ -1,6 +1,6 @@
 # Portfolio
 
-Bilingual (EN/PT) portfolio site for Vinícius Nunes. React, TypeScript and Vite.
+Bilingual (EN/PT) portfolio. React, TypeScript and Vite.
 
 All copy lives in `src/data/content.ts`; every text has an `en` and `pt` version. Components only render that data.
 
