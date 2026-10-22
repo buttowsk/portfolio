@@ -1,22 +1,29 @@
-import { TopBar, Hero } from "./components/Hero";
-import { Offer } from "./components/Offer";
+import { useLang } from "./i18n";
+import { ui } from "./data/content";
+import { Nav } from "./components/Nav";
+import { Hero } from "./components/Hero";
+import { About } from "./components/About";
 import { Work } from "./components/Work";
-import { Production } from "./components/Production";
-import { Timeline } from "./components/Timeline";
 import { Stack } from "./components/Stack";
-import { Footer } from "./components/Footer";
+import { Journey } from "./components/Journey";
+import { Contact } from "./components/Contact";
 
 export function App() {
+  const { t } = useLang();
   return (
-    <div className="page">
-      <TopBar />
-      <Hero />
-      <Offer />
-      <Work />
-      <Production />
-      <Timeline />
-      <Stack />
-      <Footer />
+    <div id="top" className="page">
+      <a className="skip" href="#main">
+        {t(ui.skip)}
+      </a>
+      <Nav />
+      <main id="main" tabIndex={-1}>
+        <Hero />
+        <About />
+        <Work />
+        <Stack />
+        <Journey />
+        <Contact />
+      </main>
     </div>
   );
 }

@@ -1,38 +1,46 @@
 import { useLang } from "../i18n";
-import { profile } from "../data/content";
-import { CopyEmail } from "./CopyEmail";
-
-export function TopBar() {
-  const { lang, setLang, t } = useLang();
-  return (
-    <div className="bar">
-      <span className="where">
-        {profile.location} · {t(profile.remote)}
-      </span>
-      <div className="switch" role="group" aria-label="Language">
-        <button type="button" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
-          EN
-        </button>
-        <button type="button" aria-pressed={lang === "pt"} onClick={() => setLang("pt")}>
-          PT
-        </button>
-      </div>
-    </div>
-  );
-}
+import { hero, profile } from "../data/content";
+import { heroScene } from "../data/scenes";
+import { StoneScene } from "./StoneScene";
+import { Arrow } from "./Nav";
 
 export function Hero() {
   const { t } = useLang();
   return (
-    <header className="hero">
-      <h1>{profile.name}</h1>
-      <p className="role">{t(profile.role)}</p>
-      <p className="intro">{t(profile.intro)}</p>
-      <div className="links">
-        <a href={profile.github.href}>{profile.github.label}</a>
-        <a href={profile.linkedin.href}>{profile.linkedin.label}</a>
-        <CopyEmail email={profile.email} />
+    <section className="hero" aria-labelledby="hero-title">
+      <div className="hero-rail" aria-hidden="true">
+        <span className="hero-role">{t(profile.role)}</span>
+        <span className="hero-line" />
+        <span className="hero-year">{profile.year}</span>
       </div>
-    </header>
+
+      <div className="hero-copy">
+        <dl className="stats">
+          {hero.stats.map((s) => (
+            <div key={s.value} className="stat">
+              <dt>
+                <sup>+</sup>
+                {s.value}
+              </dt>
+              <dd>{t(s.label)}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <h1 id="hero-title" className="hello">
+          <span className="hello-word">{t(hero.greeting)}</span>
+          <span className="hello-sub">{t(hero.intro)}</span>
+        </h1>
+
+        <a className="scroll" href="#about">
+          {t(hero.scroll)}
+          <Arrow down />
+        </a>
+      </div>
+
+      <div className="hero-art">
+        <StoneScene layout={heroScene} />
+      </div>
+    </section>
   );
 }

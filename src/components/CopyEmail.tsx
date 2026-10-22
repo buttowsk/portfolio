@@ -1,19 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useLang } from "../i18n";
+import { ui } from "../data/content";
 
 export function CopyEmail({ email }: { email: string }) {
   const { t } = useLang();
   const [copied, setCopied] = useState(false);
-  const text = useRef<HTMLSpanElement>(null);
-
-  const selectText = () => {
-    if (!text.current) return;
-    const range = document.createRange();
-    range.selectNodeContents(text.current);
-    const selection = window.getSelection();
-    selection?.removeAllRanges();
-    selection?.addRange(range);
-  };
 
   const copy = async () => {
     try {
@@ -21,13 +12,13 @@ export function CopyEmail({ email }: { email: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      selectText();
+      window.location.href = `mailto:${email}`;
     }
   };
 
   return (
-    <button type="button" className="copy" onClick={copy} aria-label={t({ en: "Copy email address", pt: "Copiar endereço de email" })}>
-      <span ref={text}>{copied ? t({ en: "copied", pt: "copiado" }) : email}</span>
+    <button type="button" className="copy" onClick={copy} aria-label={t(ui.copyEmail)}>
+      <span aria-live="polite">{copied ? t(ui.copied) : t(ui.copy)}</span>
     </button>
   );
 }

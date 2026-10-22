@@ -1,20 +1,30 @@
 import { useLang } from "../i18n";
 import { stack } from "../data/content";
-import { Tags } from "./Tags";
 
 export function Stack() {
   const { t } = useLang();
   return (
-    <section aria-labelledby="stack-title">
-      <h2 id="stack-title">{t({ en: "Stack", pt: "Tecnologias" })}</h2>
-      <div className="stack">
-        {stack.map((group) => (
-          <div key={group.label.en}>
-            <span className="label">{t(group.label)}</span>
-            <Tags items={group.items} />
+    <section id="stack" className="section stack" aria-labelledby="stack-title">
+      <div className="section-head">
+        <h2 id="stack-title" className="section-title">
+          {t(stack.title)}
+        </h2>
+        <p className="section-intro">{t(stack.intro)}</p>
+      </div>
+      <dl className="stack-list">
+        {stack.groups.map((g) => (
+          <div key={g.label.en} className="stack-row">
+            <dt>{t(g.label)}</dt>
+            <dd>
+              <ul>
+                {g.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 }
