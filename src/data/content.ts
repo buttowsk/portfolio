@@ -343,8 +343,8 @@ export const journey = {
 export const contact = {
   title: { en: "Let's build something", pt: "Vamos construir algo" } as Bi,
   text: {
-    en: "Open to software engineering roles and interesting projects. Email is the fastest way to reach me.",
-    pt: "Aberto a vagas de engenharia de software e projetos interessantes. Email é o jeito mais rápido de falar comigo.",
+    en: "Open to interesting projects. Email is the fastest way to reach me.",
+    pt: "Aberto a projetos interessantes. Email é o jeito mais rápido de falar comigo.",
   } as Bi,
   emailLabel: { en: "Email", pt: "Email" } as Bi,
   elsewhere: { en: "Elsewhere", pt: "Redes" } as Bi,
